@@ -184,36 +184,36 @@ public class MyStackJUnitTest {
         System.out.println();
 
         //THIS IS DONE USING FIX (SEE LATER, IF NOT IMPLEMENTED IN THIS LAB)
-        String value = "Red, Orange, Yellow, Green, Blue, Indigo, Violet";
-        assertEquals("Violet Indigo Blue Green Yellow Orange Red " , stack.toString());
+        String value = "[Red, Orange, Yellow, Green, Blue, Indigo, Violet]";
+        assertEquals("[Violet, Indigo, Blue, Green, Yellow, Orange, Red]" , stack.toString());
 
         System.out.println(stack);
         assertEquals("Violet", stack.pop());
-        assertEquals("Indigo Blue Green Yellow Orange Red " , stack.toString());
+        assertEquals("[Indigo, Blue, Green, Yellow, Orange, Red]" , stack.toString());
 
         System.out.println(stack);
         assertEquals("Indigo", stack.pop());
-        assertEquals("Blue Green Yellow Orange Red " , stack.toString());
+        assertEquals("[Blue, Green, Yellow, Orange, Red]" , stack.toString());
 
         System.out.println(stack);
         assertEquals("Blue"  , stack.pop());
-        assertEquals("Green Yellow Orange Red " , stack.toString());
+        assertEquals("[Green, Yellow, Orange, Red]" , stack.toString());
 
         System.out.println(stack);
         assertEquals("Green" , stack.pop());
-        assertEquals("Yellow Orange Red " , stack.toString());
+        assertEquals("[Yellow, Orange, Red]" , stack.toString());
 
         System.out.println(stack);
         assertEquals("Yellow", stack.pop());
-        assertEquals("Orange Red " , stack.toString());
+        assertEquals("[Orange, Red]" , stack.toString());
 
         System.out.println(stack);
         assertEquals("Orange", stack.pop());
-        assertEquals("Red " , stack.toString());
+        assertEquals("[Red]" , stack.toString());
 
         System.out.println(stack);
         assertEquals("Red"   , stack.pop());
-        assertEquals("" , stack.toString());
+        assertEquals("[]" , stack.toString());
 
         System.out.println();
     }

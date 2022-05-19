@@ -47,11 +47,15 @@ public class MyStack<E> {
     }
 
     public String toString() {
-        String res = "";
+        String res = "[";
         Node<E> temp = this.top;
         for (temp = this.top; temp != null; temp = temp.getNext()) {
-            res += temp.getData() + " ";
+            res += temp.getData();
+            if(temp.next!=null){
+                res+=", ";
+            }
         }
+        res+="]";
         return res;
     }
 
