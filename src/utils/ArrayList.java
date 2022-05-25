@@ -5,7 +5,7 @@ package utils;
  * using an array.
  *****************************************************************/
 
-public class ArrayList<E> {
+public class ArrayList<E> implements List<E>{
 
     private int DEFAULT_CAPACITY = 10;
     private E[] data;
@@ -22,6 +22,7 @@ public class ArrayList<E> {
         numberOfElements = 0;
     }
 
+    @Override
     public boolean add(E item) {
         if (numberOfElements == data.length) {
             System.out.println(data.length + " " + numberOfElements);
@@ -42,6 +43,7 @@ public class ArrayList<E> {
         return true;
     }
 
+    @Override
     public void add(int index, E item) {
         for (int i = numberOfElements; i > index; i--) {
             data[i] = data[i - 1];
@@ -56,6 +58,7 @@ public class ArrayList<E> {
         }
     }
 
+    @Override
     public void clear() {
         for (int i = 0; i < this.numberOfElements; i++) {
             data[i] = null;
@@ -63,6 +66,7 @@ public class ArrayList<E> {
         numberOfElements = 0;
     }
 
+    @Override
     public boolean contains(E item) {
         for (int i = 0; i < numberOfElements; i++) {
             if (data[i].equals(item)) {
@@ -85,11 +89,13 @@ public class ArrayList<E> {
         }
     }
 
+    @Override
     public E get(int index) {
         checkIndex(index);
         return data[index];
     }
 
+    @Override
     public int indexOf(E item) {
         for (int i = 0; i < numberOfElements; i++) {
             if (data[i].equals(item)) {
@@ -99,10 +105,12 @@ public class ArrayList<E> {
         return -1;
     }
 
+    @Override
     public boolean isEmpty() {
         return numberOfElements == 0;
     }
 
+    @Override
     public E remove(int index) {
         checkIndex(index);
         E res = data[index];
@@ -114,6 +122,7 @@ public class ArrayList<E> {
         return res;
     }
 
+    @Override
     public boolean remove(E item) {
         int index = indexOf(item);
         if (index == -1) {
@@ -123,6 +132,7 @@ public class ArrayList<E> {
         return true;
     }
 
+    @Override
     public E set(int index, E item) {
         checkIndex(index);
         E res = data[index];
@@ -146,6 +156,7 @@ public class ArrayList<E> {
         numberOfElements--;
     }
 
+    @Override
     public int size() {
         return numberOfElements;
     }
