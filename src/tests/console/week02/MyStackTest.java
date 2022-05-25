@@ -116,26 +116,140 @@ public class MyStackTest {
 
 
     public static int removeMin(MyStack stack){
-        return 0;
+
+        MyQueue<Integer> queue1 = new MyQueue<>();
+        if (stack.isEmpty()) {
+            return -1;
+        }
+        int min = (int) stack.peek();
+        while (!stack.isEmpty()) {
+            min = Math.min(min, (int) stack.peek());
+            queue1.add((int) stack.pop());
+        }
+        while(stack.size() != 0) {
+            stack.pop();
+        }
+        MyStack<Integer> stack2 = new MyStack<>();
+        while (!queue1.isEmpty()) {
+            if (queue1.peek() == min) {
+                queue1.remove();
+            } else {
+                stack2.push(queue1.remove());
+            }
+        }
+        while (!stack2.isEmpty()) {
+            stack.push(stack2.pop());
+        }
+        return min;
+
+
     }
 
 
     public static void removeMinTest(){
         System.out.println();
         System.out.println("============  R E M O V E   M I N  =============");
+        MyStack<Integer> stack = new MyStack<>();
+        stack.push(12);
+        stack.push(18);
+        stack.push(6);
+        stack.push(11);
+        stack.push(4);
+        stack.push(38);
+        stack.push(15);
+        stack.push(24);
+
+        System.out.println("************\t Test Min Element \t**************");
+        System.out.println();
+        System.out.println("----------original-----------");
+        System.out.println("size: " + stack.size());
+        System.out.println(stack);
+        System.out.println();
+        System.out.println("----------1st min element-----------");
+        System.out.println("min element: " + removeMin(stack));
+        System.out.println("isEmpty? " + stack.isEmpty());
+        System.out.println("size: " + stack.size());
+        System.out.println(stack);
+        System.out.println();
+        System.out.println("----------2nd min element-----------");
+        System.out.println("min element: " + removeMin(stack));
+        System.out.println("isEmpty? " + stack.isEmpty());
+        System.out.println("size: " + stack.size());
+        System.out.println(stack);
+        System.out.println();
+        System.out.println("----------3rd min element-----------");
+        System.out.println("min element: " + removeMin(stack));
+        System.out.println("isEmpty? " + stack.isEmpty());
+        System.out.println("size: " + stack.size());
+        System.out.println(stack);
+        System.out.println();
+        System.out.println("----------4th min element-----------");
+        System.out.println("min element: " + removeMin(stack));
+        System.out.println("isEmpty? " + stack.isEmpty());
+        System.out.println("size: " + stack.size());
+        System.out.println(stack);
+        System.out.println();
+        System.out.println("----------5th min element-----------");
+        System.out.println("min element: " + removeMin(stack));
+        System.out.println("isEmpty? " + stack.isEmpty());
+        System.out.println("size: " + stack.size());
+        System.out.println(stack);
+        System.out.println();
+        System.out.println("----------6th min element-----------");
+        System.out.println("min element: " + removeMin(stack));
+        System.out.println("isEmpty? " + stack.isEmpty());
+        System.out.println("size: " + stack.size());
+        System.out.println(stack);
+        System.out.println();
+        System.out.println("----------7th min element-----------");
+        System.out.println("min element: " + removeMin(stack));
+        System.out.println("isEmpty? " + stack.isEmpty());
+        System.out.println("size: " + stack.size());
+        System.out.println(stack);
+        System.out.println();
+        System.out.println("----------8th min element-----------");
+        System.out.println("min element: " + removeMin(stack));
+        System.out.println("isEmpty? " + stack.isEmpty());
+        System.out.println("size: " + stack.size());
+        System.out.println(stack);
+        System.out.println();
+        System.out.println();
+        System.out.println();
+
+
+
     }
 
 
-    public static void queueToStack(MyQueue queue, MyStack stack){}
+    public static void queueToStack(MyQueue queue, MyStack stack){
+        System.out.println("before Queue to Stack: " + queue);
+        while (!queue.isEmpty()) {
+            stack.push(queue.remove());
+        }
+        System.out.println("after Queue to Stack: " + stack);
 
 
-    public static void stackToQueue(MyStack stack, MyQueue queue){}
+
+    }
+
+
+    public static void stackToQueue(MyStack stack, MyQueue queue){
+        System.out.println("before Stack to Queue: " + stack);
+        while (!stack.isEmpty()) {
+            queue.add(stack.pop());
+        }
+        System.out.println("after Stack to Queue: " + queue);
+
+
+
+    }
 
 
     public static void main(String[] args) {
         intro();
         libraryVersionTest();
-//        myVersionTest();
+         myVersionTest();
+         removeMinTest();
     }
 
 
