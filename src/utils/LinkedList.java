@@ -1,6 +1,6 @@
 package utils;
 
-public class LinkedList<E> {
+public class LinkedList<E> implements List<E> {
     public int size;
     public Node<E> head;
     public Node<E> tail;
@@ -17,6 +17,7 @@ public class LinkedList<E> {
         this.tail = tail;
     }
 
+    @Override
     public boolean add(E item) {
         if (this.head == null) {
             this.head = new Node<>(item);
@@ -30,6 +31,7 @@ public class LinkedList<E> {
         return true;
     }
 
+    @Override
     public void add(int index, E item) {
         if (index < 0 || index > size) {
             throw new IndexOutOfBoundsException();
@@ -68,6 +70,7 @@ public class LinkedList<E> {
         }
     }
 
+    @Override
     public boolean contains(E item) {
         Node<E> current = this.head;
         while (current != null) {
@@ -103,6 +106,7 @@ public class LinkedList<E> {
         return data;
     }
 
+    @Override
     public int indexOf(E item) {
         Node<E> current = this.head;
         int index = 0;
@@ -137,6 +141,7 @@ public class LinkedList<E> {
         size++;
     }
 
+    @Override
     public boolean isEmpty() {
         return size == 0;
     }
@@ -149,6 +154,7 @@ public class LinkedList<E> {
         return current;
     }
 
+    @Override
     public boolean remove(E item) {
         Node<E> current = this.head;
         Node<E> previous = null;
@@ -170,10 +176,12 @@ public class LinkedList<E> {
         return false;
     }
 
+    @Override
     public E remove(int index) {
         return detach(index);
     }
 
+    @Override
     public int size() {
         return size;
     }
@@ -193,6 +201,7 @@ public class LinkedList<E> {
         return sb.toString();
     }
 
+    @Override
     public E get(int index) {
         checkIndex(index);
         Node<E> current = this.head;
@@ -202,6 +211,7 @@ public class LinkedList<E> {
         return current.data;
     }
 
+    @Override
     public E set(int i, E item) {
         checkIndex(i);
         E res = null;
