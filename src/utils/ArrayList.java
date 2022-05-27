@@ -1,5 +1,7 @@
 package utils;
 
+import java.util.NoSuchElementException;
+
 /*****************************************************************
  * This class ArrayList implements a contiguous block of data
  * using an array.
@@ -58,7 +60,6 @@ public class ArrayList<E> implements List<E>{
         }
     }
 
-    @Override
     public void clear() {
         for (int i = 0; i < this.numberOfElements; i++) {
             data[i] = null;
@@ -132,7 +133,6 @@ public class ArrayList<E> implements List<E>{
         return true;
     }
 
-    @Override
     public E set(int index, E item) {
         checkIndex(index);
         E res = data[index];
@@ -155,7 +155,6 @@ public class ArrayList<E> implements List<E>{
         data[index] = null;
         numberOfElements--;
     }
-
     @Override
     public int size() {
         return numberOfElements;
@@ -174,7 +173,53 @@ public class ArrayList<E> implements List<E>{
         return sb.toString();
 
     }
+
+    public Iterator<E> iterator() {
+        return new ArrayListIterator<>();
+    }
+
+    private class ArrayListIterator<E> implements Iterator<E> {
+        private int currentIndex;
+        private int lastReturnedIndex;
+
+        public ArrayListIterator() {
+            this.currentIndex = 0;
+            this.lastReturnedIndex = -1;
+        }
+
+        @Override
+        public boolean hasNext() {
+            return currentIndex < numberOfElements;
+        }
+
+        @Override
+        public E next() {
+            if (!hasNext()) {
+                throw new NoSuchElementException();
+            }
+            lastReturnedIndex = currentIndex;
+            currentIndex++;
+            return (E) data[lastReturnedIndex];
+        }
+
+        @Override
+        public void remove() {
+            //remove the item returned by the last call to next().
+            //Uses remove method from its enclosing class to do the operation. If remove() has been called without a
+            //call on next(), throws an IllegalStateException
+            if (lastReturnedIndex == -1) {
+                throw new IllegalStateException();
+            }
+            currentIndex--;
+            ArrayList.this.remove(lastReturnedIndex);
+        }
+    }
 }
+
+
+
+
+
 
 
 

@@ -1,5 +1,7 @@
 package utils;
 
+import java.util.NoSuchElementException;
+
 public class LinkedList<E> implements List<E> {
     public int size;
     public Node<E> head;
@@ -50,8 +52,6 @@ public class LinkedList<E> implements List<E> {
             current.next = newNode;
             size++;
         }
-
-
     }
 
     private void append(E item) {
@@ -106,7 +106,6 @@ public class LinkedList<E> implements List<E> {
         return data;
     }
 
-    @Override
     public int indexOf(E item) {
         Node<E> current = this.head;
         int index = 0;
@@ -201,7 +200,6 @@ public class LinkedList<E> implements List<E> {
         return sb.toString();
     }
 
-    @Override
     public E get(int index) {
         checkIndex(index);
         Node<E> current = this.head;
@@ -211,18 +209,66 @@ public class LinkedList<E> implements List<E> {
         return current.data;
     }
 
-    @Override
     public E set(int i, E item) {
         checkIndex(i);
         E res = null;
         Node<E> current = this.head;
-        for (int j = 0; j <i; j++) {
+        for (int j = 0; j < i; j++) {
             current = current.next;
         }
         res = current.data;
         current.data = item;
         return res;
     }
+
+    public Iterator<E> iterator() {
+        return new LinkedListIterator<>();
+    }
+
+    private class LinkedListIterator<E> implements Iterator<E> {
+        private Node<E> current;
+        private Node<E> previous;
+
+        public LinkedListIterator() {
+            current = (Node<E>) head;
+            this.previous = null;
+        }
+
+        @Override
+        public boolean hasNext() {
+            return current != null;
+        }
+
+        @Override
+        public E next() {
+            if (!hasNext()) {
+                throw new NoSuchElementException();
+            }
+            previous = current;
+            current = current.next;
+            return previous.data;
+        }
+
+        @Override
+        public void remove() {
+            //remove the item returned by the last call to next().
+            //Uses remove method from its enclosing class to do the operation. If remove() has been called without a
+            //call on next(), throws an IllegalStateException
+            if (previous == null) {
+                throw new IllegalStateException();
+            }
+            Node<E> tmp = (Node<E>) head;
+            int ind = -1;
+            while (tmp != null) {
+                if (tmp.data.equals(previous.data)) {
+                    ind++;
+                }
+                tmp = tmp.next;
+            }
+            LinkedList.this.remove(ind);
+        }
+    }
 }
+
 
 
