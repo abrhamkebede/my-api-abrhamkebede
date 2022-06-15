@@ -23,7 +23,13 @@ public class Function02Test {
 
 
     public static void main(String[] args) {
-        //TODO: How would you test these functions?
+        System.out.println("Sum of two numbers 10 & 20 is : " + add(10, 20));
+        System.out.println("Substraction of two numbers 20 & 10 is : " + subtract(20, 10));
+        System.out.println("Multiplication of two numbers 10 & 200 is : " + multiply(10, 20));
+        System.out.println("Division of two numbers 45 & 9 is : " + divide(9, 45));
+
+
+
     }
 
 
